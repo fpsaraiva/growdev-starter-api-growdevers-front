@@ -1,6 +1,11 @@
+import api from "./services/api";
+
+import CreateAccount from "./classes/CreateAccount";
+
 class App {
   constructor() {
-    console.log("ola");
+    this.CreateAccountModal = new CreateAccount();
+
   }
 }
 
