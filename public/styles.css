@@ -39,6 +39,10 @@
   margin-left: 0;
 }
 
+#createAccountModal .input-group-text {
+  width: 74px;
+}
+
 @media (min-width: 768px) {
   #sidebar-wrapper {
     margin-left: 0;
