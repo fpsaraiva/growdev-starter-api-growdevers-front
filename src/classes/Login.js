@@ -1,6 +1,8 @@
 import Swal from "sweetalert2";
 
-import api from '../services/api';
+import api from "../services/api";
+
+import List from "./List";
 
 class Login {
   constructor() {
@@ -59,6 +61,7 @@ class Login {
     this.userCredentials = JSON.parse(localStorage.getItem("user:credentials"));
 
     if(this.userCredentials) {
+      new List(this.userCredentials.token);
       this.sidebarHeading.innerHTML = `Olá, ${this.userCredentials.user.name.split(" ")[0]}!`;
     } else {
       this.sidebarHeading.innerHTML = '<a href="" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>';

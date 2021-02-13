@@ -1,5 +1,3 @@
-import api from "./services/api";
-
 import CreateAccount from "./classes/CreateAccount";
 import Login from "./classes/Login";
 
