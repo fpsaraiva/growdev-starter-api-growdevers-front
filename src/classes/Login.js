@@ -9,7 +9,13 @@ class Login {
 
     this.btnLogin = document.querySelector("#loginModal #login-btn");
 
+    this.loginModal = new bootstrap.Modal(document.getElementById("loginModal"));
+
+    this.sidebarHeading = document.querySelector(".sidebar-heading");
+    this.userCredentials;
+
     this.registerEvent();
+    this.isUserLogged();
   }
 
   registerEvent() {
@@ -25,13 +31,17 @@ class Login {
 
       const { data } = await api.post("/login", body);
 
-      console.log(data);
+      localStorage.setItem("user:credentials", JSON.stringify(data));
+
+      this.isUserLogged();
 
       Swal.fire(
         'Parabéns!',
         'Login realizado com sucesso!',
         'success'
       );
+
+      this.loginModal.hide();
 
       return data;
     } catch (error) {
@@ -42,6 +52,16 @@ class Login {
       });
 
       return error;
+    }
+  }
+
+  isUserLogged() {
+    this.userCredentials = JSON.parse(localStorage.getItem("user:credentials"));
+
+    if(this.userCredentials) {
+      this.sidebarHeading.innerHTML = `Olá, ${this.userCredentials.user.name.split(" ")[0]}!`;
+    } else {
+      this.sidebarHeading.innerHTML = '<a href="" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>';
     }
   }
 }
